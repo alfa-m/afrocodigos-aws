@@ -1,4 +1,6 @@
-from funcoes_s3 import cria_balde, lista_balde, deleta_balde
+from classBalde import Bucket, BucketManager
+
+gerente_balde = BucketManager()
 
 def mostrar_menu():
     print("="*100)
@@ -11,15 +13,16 @@ def mostrar_menu():
 def adicionar_balde():
     nome = input("Digite o nome do bucket: ")
 
-    nome_balde = cria_balde(nome)
+    balde = Bucket(nome_balde=nome)
+    nome_balde = gerente_balde.adiciona_balde(balde.nome)
     print()
     print(f"Bucket {nome_balde} criado com sucesso!")
 
 def listar_balde():
-    lista_balde()
+    gerente_balde.lista_balde()
 
 def apagar_balde():
-    listar_balde()
+    gerente_balde.lista_balde()
     print()
     balde_pra_apagar = input("Por favor, insira o nome do bucket que deseja apagar: ")
-    deleta_balde(balde_pra_apagar)
+    gerente_balde.deleta_balde(balde_pra_apagar)
